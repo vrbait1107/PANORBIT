@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Home from "./component/Home";
+import axios from "axios";
+import react, { useState, useEffect } from "react";
 
 function App() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios({
+      url: "https://panorbit.in/api/users.json",
+      method: "get",
+    })
+      .then((value) => {
+        console.log(value.data.users);
+        setData(value.data.users);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Home state={data} />
     </div>
   );
 }
