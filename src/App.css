@@ -86,16 +86,17 @@
     margin-top: 0px;
     background-color: white !important;
     color: black !important;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     background: none;
   }
 
-  .navbar a,
-  hr {
+  .navbar a {
     color: black !important;
   }
 
   .navbar hr {
-    border: black !important;
+    color: black;
+    border: 1px solid black;
+    width: 100%;
   }
 }
