@@ -11,6 +11,10 @@ import React, {
 } from "react";
 
 import Profile from "./component/Profile";
+import Post from "./component/Post";
+import Gallery from "./component/Gallery";
+import ToDo from "./component/ToDo";
+
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { reducer, intialState } from "./reducer/reducer";
 
@@ -23,6 +27,9 @@ function Routing() {
     <Switch>
       <Route path="/" exact component={Home} />
       <Route path="/Profile/:username" component={Profile} />
+      <Route path="/Post/:username" component={Post} />
+      <Route path="/Gallery/:username" component={Gallery} />
+      <Route path="/ToDo/:username" component={ToDo} />
     </Switch>
   );
 }

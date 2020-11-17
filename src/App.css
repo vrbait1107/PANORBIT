@@ -35,6 +35,15 @@
   color: white;
 }
 
+.comming {
+  height: 80vh;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: grey;
+}
+
 .navbar hr {
   color: white;
   border: 1px solid white;
