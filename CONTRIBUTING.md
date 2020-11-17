@@ -33,7 +33,7 @@ We use GitHub issues to track public bugs. Report a bug by [opening a new issue]
 
 Pull requests are the best way to propose changes to the codebase (we use [Github Flow](https://guides.github.com/introduction/flow/index.html)). We actively welcome your pull requests:
 
-1. Fork the repo and create your branch from `master`.
+1. Fork the repo and create your branch from `main`.
 2. If you've added code or changed code that should be tested.
 3. If you've changed something or added something, update the documentation in Readme.md.
 4. Issue that pull request!
