@@ -8,7 +8,7 @@
 
 ## License
 
-- Panorbit Clone is [GNU GPL -3.0 ](./LICENSE).
+- Panorbit is [GNU GPL -3.0 ](./LICENSE).
 
 ## Contributing Guide
 
