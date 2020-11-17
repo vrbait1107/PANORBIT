@@ -71,3 +71,7 @@
 .account-container {
   min-height: 100vh;
 }
+
+.modal-click {
+  cursor: pointer;
+}

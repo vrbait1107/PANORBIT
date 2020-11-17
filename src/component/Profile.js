@@ -4,11 +4,12 @@ import Navigation from "./Navigation";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../App";
 import axios from "axios";
+import ModalView from "./ModalView";
 
 const Profile = () => {
   const { username } = useParams();
-  const [user, setUser] = useState([]);
   const { state, dispatch } = useContext(UserContext);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     axios({
@@ -29,13 +30,20 @@ const Profile = () => {
       });
   }, []);
 
+  const handleShow = () => {
+    setShow(true);
+  };
+
   return (
     <Container className="mt-5" fluid>
       <Row>
         {console.log(state)}
         <Navigation userId={state && state.username} />
         <Col md={9}>
-          <div className="d-flex flex-row justify-content-between">
+          <div
+            className="d-flex flex-row justify-content-between modal-click"
+            onClick={handleShow}
+          >
             <h5 className="font-roboto">Profile</h5>
 
             <div className="d-flex flex-row justify-content-between">
@@ -52,6 +60,7 @@ const Profile = () => {
             <Personal userData={state && state} />
             <Address userData={state && state} />
           </Row>
+          <ModalView show={show} setShow={setShow} />
         </Col>
       </Row>
     </Container>
