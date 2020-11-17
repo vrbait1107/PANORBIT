@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { UserContext } from "../App";
+import axios from "axios";
 
-const Home = ({ state }) => {
+const Home = () => {
+  const [state, setState] = useState([]);
+
+  useEffect(() => {
+    axios({
+      url: "https://panorbit.in/api/users.json",
+      method: "get",
+    })
+      .then((value) => {
+        console.log(value.data.users);
+        setState(value.data.users);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <Container className="account-container">
       <Row>
@@ -15,13 +34,18 @@ const Home = ({ state }) => {
                 state.map((item) => {
                   return (
                     <>
-                      <div class="d-flex flex-row mb-3">
+                      <div key={item.id} class="d-flex flex-row mb-3">
                         <img
                           src={item.profilepicture}
                           style={{ height: 30, width: 30 }}
                           className="img-fluid rounded-pill mr-3"
                         />
-                        <p>{item.name}</p>
+                        <Link
+                          className="text-dark"
+                          to={`Profile/${item.username}`}
+                        >
+                          {item.name}
+                        </Link>
                       </div>
                       <hr />
                     </>

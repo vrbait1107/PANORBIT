@@ -1,21 +1,56 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Navigation from "./Navigation";
+import { useParams } from "react-router-dom";
+import { UserContext } from "../App";
+import axios from "axios";
 
 const Profile = () => {
+  const { username } = useParams();
+  const [user, setUser] = useState([]);
+  const { state, dispatch } = useContext(UserContext);
+
+  useEffect(() => {
+    axios({
+      url: "https://panorbit.in/api/users.json",
+      method: "get",
+    })
+      .then((value) => {
+        console.log(value.data.users);
+        const filterArray = value.data.users.filter((item) => {
+          return item.username === username;
+        });
+
+        localStorage.setItem("user", JSON.stringify(filterArray[0]));
+        dispatch({ type: "USER", payload: filterArray[0] });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
-    <Container className="mt-4" fluid>
+    <Container className="mt-5" fluid>
       <Row>
-        <Navigation />
+        {console.log(state)}
+        <Navigation userId={state && state.username} />
         <Col md={9}>
           <div className="d-flex flex-row justify-content-between">
-            <h5>Profile</h5>
-            <h5>Vishal Bait</h5>
+            <h5 className="font-roboto">Profile</h5>
+
+            <div className="d-flex flex-row justify-content-between">
+              <img
+                src={state && state.profilepicture}
+                style={{ height: 30, width: 30 }}
+                className="img-fluid rounded-pill"
+              />
+              <h5 className="ml-3 font-roboto">{state && state.name}</h5>
+            </div>
           </div>
           <hr />
           <Row className="profile font-roboto">
-            <Personal />
-            <Address />
+            <Personal userData={state && state} />
+            <Address userData={state && state} />
           </Row>
         </Col>
       </Row>
@@ -23,54 +58,54 @@ const Profile = () => {
   );
 };
 
-const Personal = () => {
+const Personal = ({ userData }) => {
   return (
     <Col md={{ span: 4, offset: 1 }}>
       <div className="text-center">
         <img
-          src="https://github.com/vrbait1107/vrbait1107.github.io/blob/master/images/Vishal%20Bait.jpg?raw=true"
+          src={userData && userData.profilepicture}
           style={{ height: 200, width: 200 }}
           className="img-fluid rounded-pill"
         />
       </div>
 
-      <h5 className="text-center mt-3">Vishal Bait</h5>
+      <h5 className="text-center mt-3">{userData && userData.name}</h5>
 
       <div className="mt-3">
         <h5>
           <span>Username : </span>
-          vrbait1107
+          {userData && userData.username}
         </h5>
         <h5>
-          <span>Email : </span> vishalbait@gmail.com
+          <span>Email : </span> {userData && userData.email}
         </h5>
         <h5>
-          <span>Phone : </span> +91 1234567890
+          <span>Phone : </span> {userData && userData.phone}
         </h5>
         <h5>
           <span>Website : </span>
-          https://vrbait.github.io
+          {userData && userData.website}
         </h5>
 
         <hr />
 
         <div className="mt-3 ">
-          <h5 class="text-center">
+          <h5 className="text-center">
             <span>Company</span>
           </h5>
 
           <h5>
-            <span>Name : </span> Google.inc
+            <span>Name : </span> {userData && userData.company.name}
           </h5>
 
           <h5>
             <span>CatchPhrase : </span>
-            Multi-layer client server
+            {userData && userData.company.catchPhrase}
           </h5>
 
           <h5>
             <span>bs : </span>
-            harness real time market
+            {userData && userData.company.bs}
           </h5>
         </div>
       </div>
@@ -78,7 +113,7 @@ const Personal = () => {
   );
 };
 
-const Address = () => {
+const Address = ({ userData }) => {
   return (
     <Col md={{ span: 6, offset: 1 }}>
       <h5>
@@ -87,23 +122,38 @@ const Address = () => {
 
       <div className="mt-3 ">
         <h5>
-          <span>Street : </span> Kulas Light
+          <span>Street : </span> {userData && userData.address.street}
         </h5>
 
         <h5>
           <span>Suit : </span>
-          Apt. 556
+          {userData && userData.address.suite}
         </h5>
 
         <h5>
           <span>City : </span>
-          Newyork
+          {userData && userData.address.city}
         </h5>
 
         <h5>
           <span>Zipcode : </span>
-          92998-3874
+          {userData && userData.address.zipcode}
         </h5>
+      </div>
+
+      <div className="mt-3">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387190.279909073!2d-74.25987368715491!3d40.69767006458873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1605604093999!5m2!1sen!2sin"
+          style={{ width: 500, height: 400, border: 0 }}
+          frameborder="0"
+          allowfullscreen=""
+          aria-hidden="false"
+          tabindex="0"
+        ></iframe>
+        <p>
+          Lat: {userData && userData.address.geo.lat}, Long:{" "}
+          {userData && userData.address.geo.lng}
+        </p>
       </div>
     </Col>
   );

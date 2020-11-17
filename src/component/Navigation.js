@@ -1,17 +1,18 @@
-import react from "react";
+import React from "react";
 import { Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const Navigation = () => {
+const Navigation = ({ userId }) => {
   return (
     <Col md={{ span: 2 }} className="ml-5 navbar">
       <div className="d-flex flex-column  mx-auto bd-highlight">
-        <p>Profile</p>
+        <Link to={`/Profile/${userId}`}>Profile</Link>
         <hr />
-        <p>Post</p>
+        <Link to={`/Post/${userId}`}>Post</Link>
         <hr />
-        <p>Gallery</p>
+        <Link to={`/Gallery/${userId}`}>Gallery</Link>
         <hr />
-        <p>ToDo</p>
+        <Link to={`/ToDo/${userId}`}>ToDo</Link>
       </div>
     </Col>
   );

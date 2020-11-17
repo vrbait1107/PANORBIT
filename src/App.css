@@ -20,8 +20,19 @@
   font-family: "Staatliches", cursive;
 }
 
-.navbar p {
+.navbar a {
   font-size: 25px;
+  color: white;
+}
+
+.navbar a:hover {
+  font-size: 30px;
+  color: white;
+}
+
+.navbar a:active {
+  font-size: 30px;
+  color: white;
 }
 
 .navbar hr {
