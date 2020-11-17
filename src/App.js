@@ -2,6 +2,7 @@ import "./App.css";
 import Home from "./component/Home";
 import axios from "axios";
 import react, { useState, useEffect } from "react";
+import Profile from "./component/Profile";
 
 function App() {
   const [data, setData] = useState([]);
@@ -21,6 +22,7 @@ function App() {
   }, []);
   return (
     <div>
+      <Profile />
       <Home state={data} />
     </div>
   );

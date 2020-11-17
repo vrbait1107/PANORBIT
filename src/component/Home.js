@@ -3,14 +3,14 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 
 const Home = ({ state }) => {
   return (
-    <Container>
+    <Container className="account-container">
       <Row>
         <Col className="mt-5" md={{ span: 6, offset: 3 }}>
           <Card className="rounded-lg">
             <Card.Header className="py-4">
-              <h4>Select an Account</h4>
+              <h4 className="font-roboto">Select an Account</h4>
             </Card.Header>
-            <Card.Body>
+            <Card.Body className="account-card">
               {state &&
                 state.map((item) => {
                   return (
