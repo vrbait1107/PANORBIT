@@ -4,10 +4,12 @@ import Navigation from "./Navigation";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../App";
 import axios from "axios";
+import ModalView from "./ModalView";
 
 const ToDo = () => {
   const { username } = useParams();
   const { state, dispatch } = useContext(UserContext);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     axios({
@@ -28,6 +30,10 @@ const ToDo = () => {
       });
   }, []);
 
+  const handleShow = () => {
+    setShow(true);
+  };
+
   return (
     <Container className="mt-5" fluid>
       <Row>
@@ -37,7 +43,10 @@ const ToDo = () => {
           <div className="d-flex flex-row justify-content-between">
             <h5 className="font-roboto">ToDo</h5>
 
-            <div className="d-flex flex-row justify-content-between">
+            <div
+              className="d-flex flex-row justify-content-between  modal-click"
+              onClick={handleShow}
+            >
               <img
                 src={state && state.profilepicture}
                 style={{ height: 30, width: 30 }}
@@ -54,6 +63,7 @@ const ToDo = () => {
               </div>
             </Col>
           </Row>
+          <ModalView show={show} setShow={setShow} />
         </Col>
       </Row>
     </Container>
