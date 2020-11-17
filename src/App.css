@@ -79,14 +79,23 @@
 
 @media only screen and (max-width: 600px) {
   .navbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: auto;
+    text-align: left;
+    height: fit-content;
+    min-height: fit-content;
     margin-left: 0px;
     margin-top: 0px;
-    background-color: none;
-    color: black;
+    background-color: white !important;
+    color: black !important;
     margin-bottom: 20px;
+    background: none;
+  }
+
+  .navbar a,
+  hr {
+    color: black !important;
+  }
+
+  .navbar hr {
+    border: black !important;
   }
 }

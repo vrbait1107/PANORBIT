@@ -37,7 +37,6 @@ const Profile = () => {
   return (
     <Container className="mt-5 profile-container" fluid>
       <Row>
-        {console.log(state)}
         <Navigation userId={state && state.username} />
         <Col md={9}>
           <div
@@ -153,7 +152,7 @@ const Address = ({ userData }) => {
       <div className="mt-3">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387190.279909073!2d-74.25987368715491!3d40.69767006458873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1605604093999!5m2!1sen!2sin"
-          style={{ width: 500, height: 400, border: 0 }}
+          style={{ width: 450, height: 400, border: 0 }}
           frameborder="0"
           allowfullscreen=""
           aria-hidden="false"
