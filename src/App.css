@@ -4,6 +4,7 @@
 .navbar {
   text-align: center;
   border-radius: 20px;
+  margin-left: 35px;
   min-height: 100vh;
   color: white;
   background: #673ab7; /* fallback for old browsers */
@@ -74,4 +75,18 @@
 
 .modal-click {
   cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: auto;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-color: none;
+    color: black;
+    margin-bottom: 20px;
+  }
 }

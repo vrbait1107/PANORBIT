@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Navigation = ({ userId }) => {
   return (
-    <Col md={{ span: 2 }} className="ml-5 navbar">
+    <Col md={{ span: 2 }} className="navbar">
       <div className="d-flex flex-column  mx-auto bd-highlight">
         <Link to={`/Profile/${userId}`}>Profile</Link>
         <hr />

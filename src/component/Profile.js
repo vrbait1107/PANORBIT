@@ -35,7 +35,7 @@ const Profile = () => {
   };
 
   return (
-    <Container className="mt-5" fluid>
+    <Container className="mt-5 profile-container" fluid>
       <Row>
         {console.log(state)}
         <Navigation userId={state && state.username} />
@@ -158,6 +158,7 @@ const Address = ({ userData }) => {
           allowfullscreen=""
           aria-hidden="false"
           tabindex="0"
+          className="img-fluid"
         ></iframe>
         <p>
           Lat: {userData && userData.address.geo.lat}, Long:{" "}
